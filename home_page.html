@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Home-page]</title>
+    <style>
+        html {
+        scrollbar-width: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+        body {
+            background-color: rgb(0, 0, 0);
+            margin: auto;
+        }
+        .header_container {
+            position: fixed;
+            background-color: rgb(12, 2, 87);
+            width: 100%;
+            height: 60px;
+            top: 1.5%;
+            z-index: 1;
+        }
+        .image_icon {
+            position: absolute;
+            width: 10%;
+            top: 60px;
+            left: 0%;
+            opacity: 0.5;
+        }
+        .name {
+            position: absolute;
+            color: rgb(72, 199, 74);
+            font: 20px bold;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            left: 2.5%;
+        }
+        .menu_but {
+            position: absolute;
+            width: 4%;
+            left: 94%;
+            top: -5px;
+            cursor: pointer;
+            transition: width 0.3s, left 0.3s;
+        }
+        .menu_but.menu_but:hover{
+            position: absolute;
+            width: 3.5%;
+            left: 94.3%;
+            top: -1px;
+            cursor: pointer;
+        }
+        .menu_container {
+            position: fixed;
+            top: 76px;
+            left: 79.5%;
+            width: 20%;
+            height: 600px;
+            border: 2px solid rgb(72, 199, 74);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            animation: slideDown 0.5s ease;
+            z-index: 1;
+        }
+        @keyframes slideDown {
+            from {
+                visibility: hidden;
+                transform: translateY(-40px);
+                height: 0px;
+                width: 0%;
+                left: 96%;
+            }
+            50%{
+                height: 620px;
+            }
+            to {
+                transform: translateY(0);
+                height: 600px;
+                width: 20%;
+                left: 79.5%;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+                height: 600px;
+                width: 20%;
+                left: 79.5%;
+            }
+            50%{
+                height: 620px;
+            }
+            to {
+                transform: translateY(-40px);
+                height: 0px;
+                width: 0%;
+                left: 96%;
+                visibility: hidden;
+            }
+
+        }
+        @keyframes slideUpText {
+            from {
+                font-size: 20px;
+            }
+            to {
+                font-size: 0px;
+            }
+        }
+
+        @keyframes slideDownText {
+            from {
+                font-size: 0px;
+            }
+            to {
+                font-size: 16px;
+            }
+        }
+
+        .menu_items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+            margin-top: 8%;
+            align-self: flex-start;
+            padding: 0 5%;
+            text-align: center;
+            animation: slideDownText 0.5s ease;
+        }
+
+        .item {
+            position: relative;
+            background-color: rgb(12, 2, 87);
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            width: 100%;
+            padding: 3% 0%;
+            border: 2px solid rgb(6, 0, 55);
+            border-radius: 10px;
+            margin-top: 5%;
+            color: rgb(72, 199, 74);
+            
+        }
+
+        .pfp_icon {
+            position: relative;
+            width: 15%;
+            left: -40%;
+            
+        }
+        .Log_user{
+            position: relative;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            width: 100%;
+            color: rgb(72, 199, 74);
+            left: -12%;
+            top: -50px;
+        }
+        .Status_user{
+            position: relative;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            width: 100%;
+            color: rgb(72, 199, 74);
+            left: -3%;
+            top: -40px;
+        }
+        .set_icon{
+            position: relative;
+            width: 15%;
+            left: -40%;
+            top: -87.5px;
+            z-index: 1;
+        }
+        .set_icon_pfp{
+            position: relative;
+            width: 12%;
+            left: -40%;
+            top: 7px;
+            z-index: 1;
+        }
+        .set_icon_home{
+            position: relative;
+            width: 12%;
+            left: -40%;
+            top: 7px;
+            z-index: 1;
+        }
+        .set_icon_chat{
+            position: relative;
+            width: 15%;
+            left: -40%;
+            top: -37.5px;
+            z-index: 1;
+        }
+        .set_icon_acc{
+            position: relative;
+            width: 15%;
+            left: -40%;
+            top: -137.5px;
+            z-index: 1;
+        }
+        .set_icon_out{
+            position: relative;
+            width: 15%;
+            left: -40%;
+            top: -87.5px;
+            z-index: 1;
+        }
+        .settings{
+            top: -150px;
+            cursor: pointer;
+        }
+        .settings:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        
+        .log_out{
+            position: relative;
+            top: -150px;
+            cursor: pointer;
+        }
+        .log_out:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        .profile{
+            position: relative;
+            top: -50px;
+            cursor: pointer;
+        }
+        .profile:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        .chat{
+            position: relative;
+            top: -100px;
+            cursor: pointer;
+        }
+        .chat:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        .accounts{
+            position: relative;
+            top: -200px;
+            cursor: pointer;
+        }
+        .accounts:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        .home{
+            position: relative;
+            top: -50px;
+            cursor: pointer;
+        }
+        .home:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+
+
+
+
+        .main_pfp{
+            position: relative;
+            width: 3%;
+            top: 5px;
+            left: 90%;
+        }
+
+        .main_container{
+            position: absolute;
+            left: 10%;
+            top: 85px;
+            width: 80%;
+            height: 1400px;
+            background-color: rgb(4, 0, 37);
+            border: 2px solid rgb(12, 2, 87);
+            border-radius: 10px;
+            z-index: 0;
+            
+        }
+
+        .news_con{
+            position: relative;
+            width: 25%;
+            height: auto;
+            left: 2%;
+            top: 20px;
+            background-color: black;
+            border: 1px solid rgb(12, 2, 87);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .news_text{
+            position: relative;
+            padding-bottom: 10%;
+            color: rgb(72, 199, 74);
+        }
+        .News_name{
+            position: relative;
+            left: 38%;
+            padding-top: 5%;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .newsss{
+            text-wrap: wrap;
+            margin: auto;
+            padding-left: 5%;
+            padding-right: 5%;
+
+        }
+
+        .chats_con{
+            position: absolute;
+            width: 45%;
+            height: 240px;
+            left: 53%;
+            top: 20px;
+            background-color: black;
+            border: 1px solid rgb(12, 2, 87);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+        }
+        .Chats_name{
+            position: absolute;
+            left: 40%;
+            padding-top: 2%;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .chats_last {
+            position: relative;
+            width: 96%;
+            top: 80px;
+            left: 2%;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            margin-bottom: 15px;
+            background-color: rgb(12, 2, 87);
+            border: 1px solid black;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.3s ease;
+        }
+        .chats_last:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+
+        .Last_status{
+            position: absolute;
+            width: 20%;
+            height: auto;
+            left: 30%;
+            top: 20px;
+            background-color: black;
+            border: 1px solid rgb(12, 2, 87);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+        }
+        .friends_fff{
+            position: relative;
+            text-align: center;
+        }
+        .last_session{
+            position: absolute;
+            width: 20%;
+            height: auto;
+            left: 30%;
+            top: 190px;
+            background-color: black;
+            border: 1px solid rgb(12, 2, 87);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+            text-align: center;
+        }
+
+        .main_info_main {
+            position: absolute;
+            width: 58%;
+            height: auto;
+            left: 30%;
+            top: 280px;
+            background-color: black;
+            border: 1px solid rgb(12, 2, 87);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+            text-align: left;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .container_groups{
+            position: relative;
+            width: 25%;
+            height: auto;
+            left: 2%;
+            top: 60px;
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(7, 1, 58);
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+            text-align: center;
+        }
+        .groupss{
+            position: relative;
+            left: -20px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            background-color: rgb(12, 2, 87);
+            border: 1px solid rgb(7, 1, 58);
+            border-radius: 10px;
+            transition: background-color 0.2s, color 0.3s ease;
+        }
+
+        .groupss:hover{
+            background-color: rgb(7, 1, 58);
+            color: rgb(199, 72, 72);
+            box-shadow: 0 0 10px rgb(199, 72, 72);
+        }
+        .group_name{
+            position: relative;
+            left: -20px;
+        }
+
+
+        .footer {
+            position: absolute;
+            top: 1435px;
+            width: 99.5%;
+            height: 50px;
+            background-color: rgb(12, 2, 87);
+            border: 2px solid rgb(12, 2, 87);
+            z-index: 1;
+        }
+        .footer_text {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(72, 199, 74);
+            text-align: center;
+        }
+
+        .catt {
+            position: relative;
+            top: 800px;
+            left: 90%;
+        }
+        .dogg {
+            position: relative;
+            width: 10%;
+            top: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header_container">
+            <p class="name">[RE-cover]</p>
+            <div class="img_cont">
+                <img class="image_icon" src="pictures/loading_icon.gif" alt="icon">
+            </div>
+            <div class="profile_button">
+                <img class="main_pfp" src="pictures/pfp_profile.png" alt="pfp">
+            </div>
+            <div class="menu_button">
+                <img class="menu_but" src="pictures/menu_icon.png" alt="">
+            </div>
+        </div>
+        <div class="menu_container">
+            <div class="menu_items">
+                <div class="profile_cont">
+                    <div class="pfp_img">
+                        <img class="pfp_icon" src="pictures/Pfp_icon.png" alt="pfp">
+                    </div>
+                    <div class="Log_user">[Username]</div>
+                    <div class="Status_user">[Status]: online</div>
+                </div>
+                <img class="set_icon_home" src="pictures/home_icon.png" alt="set">
+                <div class="item home">Home</div>
+                <img class="set_icon_pfp" src="pictures/pfp_profile.png" alt="set">
+                <div class="item profile">Profile</div>
+                <img class="set_icon_chat" src="pictures/chat_icon.png" alt="set">
+                <div class="item chat">Chat</div>
+                <img class="set_icon" src="pictures/settings.png" alt="set">
+                <div class="item settings">Settings</div>
+                <img class="set_icon_acc" src="pictures/accounts.jpg" alt="set">
+                <div class="item accounts">Accounts</div>
+                <img class="set_icon_out" src="pictures/log_out.png" alt="set">
+                <div class="item log_out">log Out</div>
+            </div>
+        </div>
+        <div class="main_container">
+            <div class="container_news">
+                <div class="news_con">
+                    <p class="news_text News_name">News</p>
+                    <ul class="news_text">
+                        <li>New updates</li>
+                        <li>New Members</li>
+                        <li>New admins</li>
+                        <li>Info</li>
+                    </ul>
+                    <p class="news_text newsss">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+
+            <div class="container_groups">
+                <ul class="groups">
+                    <p class="group_name">Groups</p>
+                    <li class="groupss">Group 1</li>
+                    <li class="groupss">Group 2</li>
+                    <li class="groupss">Group 3</li>
+                    <li class="groupss">Group 4</li>
+                    <li class="groupss">Group 5</li>
+                </ul>
+            </div>
+
+            <div class="Last_status">
+                <div class="last_status_con">
+                    <p class="friends_fff status_name">Status: online</p>
+                    <p class="friends_fff friends_status">Your friends:</p>
+                    <ul class="friends_list">
+                        <li>Online friends: 10</li>
+                        <li>Offline friends: 30</li>
+                        <li>All friends: 40</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="last_session">
+                <p>Your last session: 10 hours ago</p>
+            </div>
+
+
+            <div class="container_chats">
+                <div class="chats_con">
+                    <p class="Chats_name">Last chats</p>
+                    <div class="chats_last chats_con1">Chat 1</div>
+                    <div class="chats_last chats_con2">Chat 2</div>
+                    <div class="chats_last chats_con3">Chat 3</div>
+                </div>
+            </div>
+
+            <div class="main_info_main">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Odio facilisis mauris sit amet massa vitae tortor condimentum. Ultricies mi eget mauris pharetra et ultrices neque. Ac ut consequat semper viverra. Duis at tellus at urna condimentum mattis pellentesque id nibh. Amet volutpat consequat mauris nunc. Nisl suscipit adipiscing bibendum est. Viverra adipiscing at in tellus integer. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. Mollis nunc sed id semper risus in hendrerit. Sed faucibus turpis in eu mi bibendum. Morbi quis commodo odio aenean sed adipiscing diam. Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Commodo ullamcorper a lacus vestibulum sed arcu. Mauris pharetra et ultrices neque ornare aenean euismod. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra.
+
+                    Ac turpis egestas sed tempus urna et pharetra. Etiam erat velit scelerisque in. Hac habitasse platea dictumst vestibulum. Sed felis eget velit aliquet sagittis. Tristique nulla aliquet enim tortor. Nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum. Aenean euismod elementum nisi quis eleifend. Et leo duis ut diam quam nulla porttitor massa. Blandit massa enim nec dui nunc mattis. Vel pretium lectus quam id leo in vitae turpis massa. Tincidunt nunc pulvinar sapien et. Neque vitae tempus quam pellentesque nec nam.
+                    
+                    Nam libero justo laoreet sit amet. Vel facilisis volutpat est velit. Felis donec et odio pellentesque diam volutpat commodo sed. Eu feugiat pretium nibh ipsum consequat. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Non curabitur gravida arcu ac. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo vel. Quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nisi porta lorem mollis aliquam ut porttitor leo a. In tellus integer feugiat scelerisque varius. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper.
+                    
+                    Fames ac turpis egestas integer eget aliquet nibh. Diam quam nulla porttitor massa id neque aliquam vestibulum. Vel pharetra vel turpis nunc eget lorem. Rhoncus aenean vel elit scelerisque mauris pellentesque. Tristique magna sit amet purus gravida. Tortor dignissim convallis aenean et tortor at risus. Lacus luctus accumsan tortor posuere ac. Rhoncus est pellentesque elit ullamcorper dignissim cras. Sit amet nulla facilisi morbi tempus. Varius vel pharetra vel turpis nunc. Malesuada nunc vel risus commodo. Arcu vitae elementum curabitur vitae nunc sed velit. Eget est lorem ipsum dolor sit amet consectetur adipiscing elit. Ullamcorper a lacus vestibulum sed arcu non. Augue ut lectus arcu bibendum at varius. Libero justo laoreet sit amet cursus. Nisi vitae suscipit tellus mauris a diam maecenas sed.
+                    
+                    Gravida dictum fusce ut placerat. Orci a scelerisque purus semper eget duis at. Urna condimentum mattis pellentesque id nibh tortor id aliquet. Et ultrices neque ornare aenean euismod elementum. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Consequat nisl vel pretium lectus quam id leo. Nulla facilisi morbi tempus iaculis. Sit amet commodo nulla facilisi nullam vehicula. Pharetra et ultrices neque ornare aenean euismod elementum nisi. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium. Pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada. In cursus turpis massa tincidunt dui. Euismod in pellentesque massa placerat duis ultricies lacus sed turpis.</p>
+            </div>
+        </div>
+
+        <div class="cat">
+            <img class="catt" src="pictures/dancing_cat2.gif" alt="cat">
+        </div>
+
+        <div class="dog">
+            <img class="dogg" src="pictures/dog.png" alt="dog">
+        </div>
+
+
+        <div class="footer">
+            <div  class="container_footer">
+                <p class="footer_text">No other social media! Not allowed to share your account in internet!</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+        document.querySelector('.menu_but').addEventListener('click', function() {
+
+            var menuContainer = document.querySelector('.menu_container');
+            if (menuContainer.style.display === 'none' || menuContainer.style.display === '') {
+                menuContainer.style.display = 'block';
+            }  
+            else {
+                menuContainer.style.animation = 'slideUp 0.5s ease';
+                setTimeout(function() {
+                    menuContainer.style.display = 'none';
+                    menuContainer.style.animation = '';
+                }, 500);
+            }
+        });
+        document.querySelector('.menu_but').addEventListener('click', function() {
+
+            var item = document.querySelector('.menu_items');
+            if (item.style.display === 'none' || item.style.display === '') {
+                item.style.display = 'block';
+            } 
+            else {
+                item.style.animation = 'slideUpText 0.5s ease';
+                setTimeout(function() {
+                    item.style.display = 'none';
+                    item.style.animation = '';
+                }, 500);
+            }
+        });
+
+
+
+var homeItem = document.querySelector('.item.home');
+homeItem.addEventListener('click', function() {
+    window.location.href = 'home_page.html';
+});
+
+
+var profItem = document.querySelector('.item.profile');
+profItem.addEventListener('click', function() {
+    window.location.href = 'menu_html/profile.html';
+});
+
+
+var chatItem = document.querySelector('.item.chat');
+chatItem.addEventListener('click', function() {
+    window.location.href = 'menu_html/chat.html';
+});
+
+
+var setItem = document.querySelector('.item.settings');
+setItem.addEventListener('click', function() {
+    window.location.href = 'menu_html/settings.html';
+});
+
+
+var accItem = document.querySelector('.item.accounts');
+accItem.addEventListener('click', function() {
+    window.location.href = 'menu_html/accounts.html';
+});
+
+
+        
+    </script>
+    
+</body>
+</html>

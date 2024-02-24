@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOADING...</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .stay{
+            position: absolute;
+            width: 40%;
+            left: 30%;
+        }
+        .icon{
+            position: absolute;
+            left: 82%;
+            top: 68%;
+        }
+
+    </style>
+    <script>
+        setTimeout(function() {
+  window.location.href = 'main_page.html';
+}, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+</head>
+<body>
+    <div class="container">
+    <img src="pictures/stay_connected.gif" alt="stay" class="stay">
+    <img src="pictures/loading_icon.gif" alt="icon" class="icon">
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[RE-cover]-introduce...</title>
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+            margin: auto;
+        }
+        .start_button {
+            position: absolute;
+            left: 45%;
+            top: 55%;
+            width: 200px;
+            height: 30px;
+            border-radius: 8px;
+            border: 2px solid rgb(255, 255, 255);
+            color: rgb(134, 184, 77);
+            font: 15px bold;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgb(42, 42, 42);
+            visibility: hidden;
+            animation: fade-in 1s ease forwards, blur-in 1s ease forwards, pulse 2s infinite;
+        }
+        .start_button:hover {
+            background-color: rgb(214, 214, 214);
+            border-color: rgb(0, 0, 0);
+            color: rgb(184, 77, 77);
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes blur-in {
+            from {
+                filter: blur(10px);
+            }
+            to {
+                filter: blur(0);
+            }
+        }
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+        .start_game {
+            position: absolute;
+            left: 47.4%;
+            top: 45%;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .starting {
+            position: absolute;
+            margin: auto;
+            left: 2%;
+        }
+        .collecting {
+            position: absolute;
+            margin: auto;
+            left: 2%;
+            top: 6%;
+        }
+        .Hello {
+            position: absolute;
+            margin: auto;
+            left: 2%;
+            top: 12%;
+        }
+        .project {
+            position: absolute;
+            margin: auto;
+            left: 2%;
+            top: 18%;
+        }
+        .want {
+            position: absolute;
+            margin: auto;
+            left: 2%;
+            top: 24%;
+        }
+        /* Adjust the position of the final button */
+        #finalButton {
+            position: absolute;
+            left: 3%;
+            top: 33%;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="start_game">RE-cover</p>
+        <button onclick="redirectToLoadingPage()" class="start_button" id="finalButton">Start</button>
+
+        <img src="pictures/Starting.gif" alt="starting" class="starting" id="starting">
+        <img src="pictures/Collecting_data.gif" alt="collecting" class="collecting" id="collecting" style="display: none;">
+        <!-- Additional GIFs -->
+        <img src="pictures/Hello_welcome.gif" alt="Hello" class="Hello" id="Hello" style="display: none;">
+        <img src="pictures/project.gif" alt="project" class="project" id="project" style="display: none;">
+        <img src="pictures/want_start.gif" alt="want" class="want" id="want" style="display: none;">
+    </div>
+    <script>
+        function redirectToLoadingPage() {
+            window.location.href = 'loading.html';
+        }
+
+        function startNextGif(gifId, delay, isLast) {
+            setTimeout(function() {
+                var gif = document.getElementById(gifId);
+                gif.style.display = 'block';
+                // Start the GIF animation
+                setTimeout(function() {
+                    gif.src = gif.src; // Restart the GIF
+                    if (isLast) {
+                        // Show and enable the final button after a delay
+                        setTimeout(function() {
+                            var finalButton = document.getElementById('finalButton');
+                            finalButton.style.visibility = 'visible';
+                        }, 3000); // Adjust the delay as needed
+                    }
+                }, 100); // Delay in milliseconds (100 milliseconds)
+            }, delay); // Delay in milliseconds
+        }
+
+        // Wait for the starting image to load
+        document.getElementById('starting').onload = function() {
+            // Start the first additional GIF after a delay
+            startNextGif('collecting', 1500, false); // Adjust the delay as needed
+
+            // Start subsequent additional GIFs after the same delay
+            startNextGif('Hello', 3500, false);
+            startNextGif('project', 6500, false);
+            startNextGif('want', 14500, true); // Adjust the delay as needed, set isLast to true for the last GIF
+        };
+    </script>
+</body>
+</html>
